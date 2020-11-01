@@ -10,7 +10,7 @@ $teller = query("SELECT * FROM tbl_teller");
 
 // tombol cari
 if (isset($_POST["cari"])) {
-    $nasabah = cari($_POST["keyword"]);
+    $teller = cari($_POST["keyword"]);
 }
 
 // ambil data dari tabel

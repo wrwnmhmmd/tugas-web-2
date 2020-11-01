@@ -14,11 +14,11 @@
 				<li><a href="dashboard.php">Home</a></li>
 				<li><a href="dashboard.php?data=nasabah/home-nasabah.php">Nasabah</a></li>
 				<li><a href="dashboard.php?data=teller/home-teller.php">Teller</a></li>
-				<li><a href="cso/home-cso.php">Customer Service</a></li>
+				<li><a href="dashboard.php?data=teller/home-cso.php">Customer Service</a></li>
 				<li><a href="#">Transaksi</a></li>
 				<ul>
-					<li><a href="#">Teller</a></li>
-					<li><a href="#">Customer Service</a></li>
+					<li><a href="dashboard.php?data=transaksi_teller/home-transaksi-teller.php">Teller</a></li>
+					<li><a href="dashboard.php?data=transaksi_cso/home-transaksi-cso.php">Customer Service</a></li>
 				</ul>
 				<li><a href="logout.php">Logout</a></li>
 			</ul>

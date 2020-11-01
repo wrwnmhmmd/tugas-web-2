@@ -5,26 +5,27 @@ if (!isset($_SESSION["login"])) {
     header("Location: /login.php");
     exit;
 }
-require 'function-transaksi-teller.php';
-$transaksiTeller = query("SELECT * FROM transaksi_teller");
+require 'function-transaksi-cso.php';
+$transaksiCso = query("SELECT * FROM transaksi_cso");
 
-$totalTransaction = 0;
+//total setoran teller
+// $totalTransaction = 0;
 
-foreach($transaksiTeller as $row) {
-    $nilaiSetorTunai = $row["nilai_setor_tunai"];
+// foreach($transaksiTeller as $row) {
+//     $nilaiSetorTunai = $row["nilai_setor_tunai"];
 
-    $totalTransaction += $nilaiSetorTunai;
-}
+//     $totalTransaction += $nilaiSetorTunai;
+// }
 
-$finalTotal = $totalTransaction;
+// $finalTotal = $totalTransaction;
 
 // tombol cari
 if (isset($_POST["cari"])) {
-    $transaksiTeller = cari($_POST["keyword"]);
+    $transaksiCso = cari($_POST["keyword"]);
 }
 
 // ambil data dari tabel
-$result = mysqli_query($db, "SELECT * FROM transaksi_teller");
+$result = mysqli_query($db, "SELECT * FROM transaksi_cso");
 ?>
 
 <!DOCTYPE html>
@@ -32,12 +33,12 @@ $result = mysqli_query($db, "SELECT * FROM transaksi_teller");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin</title>
+    <title>Transaksi Customer Service</title>
 </head>
 <body>
-    <h1>Daftar Transaksi Teller</h1>
-    <h2>Total Transaksi Hari Ini :</h2>
-    <a href="tambah-transaksi-teller.php">Tambahkan Data Transaksi Teller</a>
+    <h1>Daftar Transaksi Customer Service</h1>
+    <!-- <h2>Total Transaksi Hari Ini :</h2> -->
+    <a href="tambah-transaksi-cso.php">Tambahkan Data Transaksi CSO</a>
     <br><br>
     <form action="" method="POST">
         <input type="text" name="keyword" size="40" autofocus placeholder="Gunakan Id untuk melakukan pencarian..." autocomplete="off">
@@ -48,34 +49,32 @@ $result = mysqli_query($db, "SELECT * FROM transaksi_teller");
         <tr>
             <th>No.</th>
             <th>Aksi</th>
-            <th>Nama Teller</th>
+            <th>Nama CSO</th>
             <th>Nama Nasabah</th>
-            <th>Jumlah Setoran</th>
+            <th>Jenis Layanan</th>
             <th>Tanggal Transaksi</th>
         </tr>
         <?php $i = 1; ?>
-        <?php foreach ($transaksiTeller as $row) : ?>
+        <?php foreach ($transaksiCso as $row) : ?>
             <tr>    
                 <td><?= $i; ?></td>
                 <td>
-                    <a href="ubah-transaksi-teller.php?id_transaksi=<?= $row["id_transaksi"]; ?>">Ubah</a> |
-                    <a href="hapus-transaksi-teller.php?id_transaksi=<?= $row["id_transaksi"]; ?>" onclick="
+                    <a href="ubah-transaksi-cso.php?id_transaksi=<?= $row["id_transaksi"]; ?>">Ubah</a> |
+                    <a href="hapus-transaksi-cso.php?id_transaksi=<?= $row["id_transaksi"]; ?>" onclick="
                     return confirm('yakin?');">Hapus</a>
                 </td>
                 <td>
                     <?php
-                        // buat variable teller id
-                        $idTeller = $row["id_teller"];
-                        // ambil data dari table teller menggunakan id teller yang diambil di atas
-                        $tellerName = query("SELECT nama_teller FROM tbl_teller WHERE id_teller = $idTeller");
-
+                        // buat variable cso id
+                        $idCso = $row["id_cso"];
+                        // ambil data dari table cso menggunakan id cso yang diambil di atas
+                        $csoName = query("SELECT nama_cso FROM tbl_cso WHERE id_cso = $idCso");
                         // Ambil data hasil query yang masih dalam berbentuk array
-                        $tellerNameArray = $tellerName[0];
-
+                        $csoNameArray = $csoName[0];
                         // Cek Data tersebut ada atau tidak
-                        if(!empty($tellerNameArray)) {
-                            // kalau ada munculkan value nama tellernya 
-                            echo $tellerNameArray['nama_teller'];
+                        if(!empty($csoNameArray)) {
+                            // kalau ada munculkan value nama CSO 
+                            echo $csoNameArray['nama_cso'];
                         }
 
                     ?>
@@ -92,17 +91,16 @@ $result = mysqli_query($db, "SELECT * FROM transaksi_teller");
                         }
                     ?>
                 </td>
-                <td><?= 'Rp'.number_format($row["nilai_setor_tunai"]); ?></td>
-                <td><?= $row["tanggal_transaksi"]; ?></td>
+                <td><?= $row["jenis_layanan"]; ?></td>
+                <td><?= $row["tgl_transaksi"]; ?></td>
             </tr>
             <?php $i++; ?>
         <?php endforeach; ?>
 
-        <tr>
+        <!-- <tr>
             Total Transaksi 
             <?= number_format($finalTotal); ?>
-        </tr>
+        </tr> -->
 </table>
 </body>
-
 </html>

@@ -4,7 +4,7 @@
     error_reporting(0);
 
     if($data == 'home') {
-        include "home.php";
+        include "dashboard.php";
     } elseif($data == 'nasabah/home-nasabah.php') {
         include"nasabah/home-nasabah.php";
     } elseif($data == 'teller/home-teller.php') {

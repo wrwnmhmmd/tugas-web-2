@@ -10,7 +10,7 @@ $nasabah = query("SELECT * FROM tbl_nasabah");
 
 // tombol cari
 if (isset($_POST["cari"])) {
-    $nasabah = cari($_POST["keyword"]);
+    $teller = cari($_POST["keyword"]);
 }
 
 // ambil data dari tabel
@@ -27,6 +27,7 @@ $result = mysqli_query($db, "SELECT * FROM tbl_nasabah");
 </head>
 
 <body>
+    <div class="container">
     <h1>Daftar Nasabah</h1>
     <a href="tambah-nasabah.php">Tambahkan Data Nasabah</a>
     <br><br>
@@ -64,6 +65,7 @@ $result = mysqli_query($db, "SELECT * FROM tbl_nasabah");
             <?php $i++; ?>
         <?php endforeach; ?>
     </table>
+</div>
 </body>
 
 </html>
