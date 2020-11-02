@@ -12,7 +12,10 @@
 body {
     background-color: #f3f5f9;
 }
-
+.isi{
+    margin-left: 240px;
+    margin-top: 50px;
+}
 .wrapper {
     display: flex;
     position: relative;

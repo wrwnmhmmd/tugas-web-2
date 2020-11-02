@@ -27,7 +27,8 @@ $result = mysqli_query($db, "SELECT * FROM tbl_nasabah");
 </head>
 
 <body>
-    <div class="container">
+
+    <div class="container isi">
     <h1>Daftar Nasabah</h1>
     <a href="tambah-nasabah.php">Tambahkan Data Nasabah</a>
     <br><br>

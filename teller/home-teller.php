@@ -26,6 +26,7 @@ $result = mysqli_query($db, "SELECT * FROM tbl_nasabah");
 </head>
 
 <body>
+<div class="container isi">
     <h1>Daftar Teller</h1>
     <a href="tambah-teller.php">Tambah Data Teller</a>
     <br><br>
@@ -56,7 +57,7 @@ $result = mysqli_query($db, "SELECT * FROM tbl_nasabah");
             </tr>
             <?php $i++; ?>
         <?php endforeach; ?>
-    </table>
+    </table></div>
 </body>
 
 </html>
